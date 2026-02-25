@@ -1,0 +1,102 @@
+﻿
+> pivot@0.1.0 build
+> next build
+
+Ôû▓ Next.js 16.1.6 (Turbopack)
+- Environments: .env
+
+  Creating an optimized production build ...
+npm : 
+At line:1 char:1
++ npm run build > buil
+d_logs.txt 2>&1
++ ~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: (:String) [   
+ ], RemoteExceptio    
+n
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 
+> Build error occurred
+Error: Turbopack build
+ failed with 2 errors:
+./app/api/cron/route.t
+s:77:30
+Parsing ecmascript sou
+rce code failed
+[0m [90m 75 |[39m  
+           [90m// Lev
+erage Pollinations.ai 
+for instantly generate
+d, free atmospheric im
+ages[39m
+ [90m 76 |[39m      
+       [36mconst[39m
+ enhancedPrompt [33m=
+[39m item[33m.[39mi
+mageSearchQuery [33m+
+[39m [32m', dark moo
+dy atmospheric cinemat
+ic lighting masterpiec
+e'[39m[33m;[39m
+[31m[1m>[22m[39m[
+90m 77 |[39m         
+    [36mconst[39m im
+ageUrl [33m=[39m [3
+7m[41m[1m\[22m[49m
+[39m[32m`https://ima
+ge.pollinations.ai/pro
+mpt/\${encodeURICompon
+ent(enhancedPrompt)}?w
+idth=800&height=600&no
+logo=true\`;[39m
+ [90m    |[39m      
+                      
+  [31m[1m^[22m[39m
+ [90m 78 |[39m [32m
+[39m
+ [90m 79 |[39m [32m
+      await prisma.art
+icle.upsert({[39m
+ [90m 80 |[39m [32m
+        where: { url: 
+item.url },[39m[0m
+
+Expected unicode escap
+e
+
+
+./components/Hero.tsx:
+53:1
+Parsing ecmascript sou
+rce code failed
+[0m [90m 51 |[39m 
+[32m  );[39m
+ [90m 52 |[39m [32m
+}[39m
+[31m[1m>[22m[39m[
+90m 53 |[39m [32m[3
+9m
+ [90m    |[39m [31m
+[1m^[22m[39m[0m
+
+Expected '</', got '<e
+of>'
+
+Import trace:
+  Server Component:
+    ./components/Hero.
+tsx
+    ./app/page.tsx
+
+
+    at <unknown> (./ap
+p/api/cron/route.ts:77
+:30)
+    at <unknown> (./co
+mponents/Hero.tsx:53:1
+)

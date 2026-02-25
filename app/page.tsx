@@ -1,66 +1,55 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import { prisma } from '../lib/prisma';
+import HeroCarousel from '../components/HeroCarousel';
+import NewsList from '../components/NewsList';
+import DeepDives from '../components/DeepDives';
+import TheFeed from '../components/TheFeed';
+import Newsletter from '../components/Newsletter';
+import styles from './page.module.css';
 
-export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+export const revalidate = 60;
+
+export default async function Home() {
+  const articles = await prisma.article.findMany({
+    orderBy: { createdAt: 'desc' },
+    take: 30,
+  });
+
+  if (!articles || articles.length === 0) {
+    return (
+      <main className="container">
+        <div className={styles.emptyState}>
+          <h1>Awaiting Intelligence</h1>
+          <p>No articles found. Hit the <a href="/api/cron" className="text-accent">uplink</a> to fetch the latest news via Gemini AI.</p>
         </div>
       </main>
-    </div>
+    );
+  }
+
+  // Smart distribution
+  const heroArticles = articles.slice(0, 4);   // Top 4 rotate in the hero
+  const railEnd = Math.min(8, articles.length);
+  const deepEnd = Math.min(railEnd + 4, articles.length);
+
+  const rightRailArticles = articles.slice(4, railEnd);
+  const deepDiveArticles = articles.slice(railEnd, deepEnd);
+  const feedArticles = articles.slice(deepEnd);
+
+  return (
+    <main className="container animate-fade-in">
+      {/* Hero Carousel + Breaking Rail */}
+      <section className={styles.topSection}>
+        <HeroCarousel articles={heroArticles} intervalMs={8000} />
+        {rightRailArticles.length > 0 && <NewsList articles={rightRailArticles} />}
+      </section>
+
+      {/* Deep Dives Grid */}
+      {deepDiveArticles.length > 0 && <DeepDives articles={deepDiveArticles} />}
+
+      {/* The Feed */}
+      {feedArticles.length > 0 && <TheFeed articles={feedArticles} />}
+
+      {/* Newsletter */}
+      <Newsletter />
+    </main>
   );
 }

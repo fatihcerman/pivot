@@ -1,0 +1,125 @@
+/* ════════════════════════════════════════════════════
+   NEWSLETTER — Premium Subscribe Banner
+   Centered, typographic-driven CTA
+   ════════════════════════════════════════════════════ */
+
+.section {
+    padding: var(--spacing-xl) var(--spacing-md);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-top: 1px solid var(--border-subtle);
+    margin-top: var(--spacing-xl);
+}
+
+.container {
+    max-width: 560px;
+    width: 100%;
+}
+
+.label {
+    color: var(--accent-electric);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 15px var(--accent-electric-glow);
+}
+
+.title {
+    font-size: 2.25rem;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 0.75rem;
+}
+
+@media (min-width: 768px) {
+    .title {
+        font-size: 2.75rem;
+    }
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+    .form {
+        flex-direction: row;
+        gap: 0;
+    }
+}
+
+.input {
+    flex-grow: 1;
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border-strong);
+    padding: 0.9rem 1.25rem;
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: #fff;
+    outline: none;
+    border-radius: var(--radius-sm);
+    transition: border-color var(--transition-fast);
+}
+
+@media (min-width: 640px) {
+    .input {
+        border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+    }
+}
+
+.input:focus {
+    border-color: var(--accent-electric);
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.1);
+}
+
+.input::placeholder {
+    color: var(--text-tertiary);
+}
+
+.button {
+    background: var(--accent-electric);
+    color: var(--bg-base);
+    border: none;
+    padding: 0.9rem 1.75rem;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+}
+
+@media (min-width: 640px) {
+    .button {
+        border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    }
+}
+
+.button:hover {
+    background: #00BFDF;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+}
+
+.button svg {
+    width: 16px;
+    height: 16px;
+}

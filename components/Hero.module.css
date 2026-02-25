@@ -1,0 +1,329 @@
+/* ════════════════════════════════════════════════════
+   HERO — Cinematic Crossfade Carousel
+   Single atmospheric bleed, dual-slide crossfade
+   ════════════════════════════════════════════════════ */
+
+.carouselWrapper {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: visible;
+    min-height: 520px;
+    height: 100%;
+}
+
+/* ── Slide Layer (for crossfade) ── */
+.slideLayer {
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    z-index: 2;
+}
+
+.slideLayer:first-child {
+    z-index: 1;
+}
+
+.slideFadeIn {
+    animation: heroFadeIn 0.8s ease forwards;
+}
+
+.slideFadeOut {
+    animation: heroFadeOut 0.8s ease forwards;
+}
+
+@keyframes heroFadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes heroFadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+/* ── Fix #8: Single Atmospheric Bleed ──
+   One div, massively blurred, pulsing from all sides */
+.atmosphericBleed {
+    position: absolute;
+    inset: -50%;
+    background-size: cover;
+    background-position: center;
+    filter: blur(100px) saturate(250%) brightness(0.6);
+    opacity: 0.35;
+    z-index: 0;
+    pointer-events: none;
+    transform: translateZ(0);
+    animation: bleed-breathe 12s ease-in-out infinite alternate;
+    transition: background-image 1.2s ease;
+}
+
+@keyframes bleed-breathe {
+    0% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0.45;
+        transform: scale(1.08);
+    }
+}
+
+.carouselWrapper:hover .atmosphericBleed {
+    opacity: 0.5;
+    filter: blur(110px) saturate(300%) brightness(0.7);
+}
+
+/* ── Hero Card ── */
+.heroLink {
+    display: block;
+    outline: none;
+    cursor: pointer;
+    height: 100%;
+}
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 100%;
+    min-height: 520px;
+}
+
+/* ── Image Layer ── */
+.imageLayer {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.image {
+    object-fit: cover;
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    filter: brightness(0.75) contrast(1.15) saturate(1.1);
+}
+
+.heroLink:hover .image {
+    transform: scale(1.04);
+    filter: brightness(0.85) contrast(1.1) saturate(1.2);
+}
+
+.gradientOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top,
+            rgba(10, 10, 12, 0.98) 0%,
+            rgba(10, 10, 12, 0.8) 20%,
+            rgba(10, 10, 12, 0.35) 50%,
+            transparent 75%);
+    z-index: 2;
+}
+
+.imagePlaceholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--bg-surface-elevated), var(--bg-base));
+    position: relative;
+    overflow: hidden;
+}
+
+.placeholderGlow {
+    position: absolute;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.03), transparent);
+    transform: translateX(-100%) skewX(-15deg);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    100% {
+        transform: translateX(100%) skewX(-15deg);
+    }
+}
+
+/* ── Content Layer ── */
+.contentLayer {
+    position: relative;
+    z-index: 10;
+    margin-top: auto;
+    padding: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.metaData {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-weight: 800;
+}
+
+.category {
+    color: var(--accent-electric);
+    text-shadow: 0 0 18px var(--accent-electric-glow);
+}
+
+.readingTime {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.08);
+    padding: 4px 12px;
+    border-radius: var(--radius-sm);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+}
+
+.title {
+    font-size: clamp(1.8rem, 4.5vw, 3.2rem);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 1.02;
+    color: #FFF;
+    max-width: 90%;
+    text-shadow: 0 4px 30px rgba(0, 0, 0, 0.9);
+}
+
+.summary {
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+    color: var(--text-secondary);
+    line-height: 1.55;
+    max-width: 70%;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
+}
+
+.ctaWrapper {
+    margin-top: 0.75rem;
+}
+
+.ctaButton {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem 1.75rem;
+    background: rgba(0, 212, 255, 0.06);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: var(--radius-sm);
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--accent-electric);
+    transition: all var(--transition-fast);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 0 18px rgba(0, 212, 255, 0.08), inset 0 0 15px rgba(0, 212, 255, 0.03);
+}
+
+.heroLink:hover .ctaButton {
+    background: rgba(0, 212, 255, 0.14);
+    border-color: rgba(0, 212, 255, 0.6);
+    color: #fff;
+    box-shadow: 0 0 35px rgba(0, 212, 255, 0.2), 0 0 70px rgba(0, 212, 255, 0.08);
+    text-shadow: 0 0 12px rgba(0, 212, 255, 0.5);
+}
+
+/* ── Urgent Badge ── */
+.urgentBadgeContainer {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.urgentPulse {
+    width: 8px;
+    height: 8px;
+    background: var(--accent-crimson);
+    border-radius: 50%;
+    animation: urgent-ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes urgent-ping {
+
+    75%,
+    100% {
+        transform: scale(2.5);
+        opacity: 0;
+    }
+}
+
+.urgentBadge {
+    background: rgba(255, 23, 68, 0.15);
+    border: 1px solid rgba(255, 23, 68, 0.35);
+    color: var(--accent-crimson);
+    padding: 0.2rem 0.65rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.65rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+}
+
+/* ── Progress Indicators ── */
+.indicators {
+    position: absolute;
+    bottom: 1rem;
+    right: 1.5rem;
+    z-index: 20;
+    display: flex;
+    gap: 0.4rem;
+}
+
+.dot {
+    width: 28px;
+    height: 3px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.15);
+    overflow: hidden;
+    position: relative;
+}
+
+.dotActive {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.dotProgress {
+    position: absolute;
+    inset: 0;
+    background: var(--accent-electric);
+    border-radius: 2px;
+    animation: progress-fill linear forwards;
+    box-shadow: 0 0 8px var(--accent-electric-glow);
+}
+
+@keyframes progress-fill {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
