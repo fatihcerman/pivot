@@ -38,14 +38,25 @@ export default async function Home() {
     <main className="container animate-fade-in">
       {/* Hero Carousel + Breaking Rail */}
       <section className={styles.topSection}>
-        <HeroCarousel articles={heroArticles} intervalMs={8000} />
-        {rightRailArticles.length > 0 && <NewsList articles={rightRailArticles} />}
+        <div className={styles.heroColumn}>
+          <HeroCarousel articles={heroArticles} intervalMs={8000} />
+        </div>
+        <div className={styles.railColumn}>
+          <h2>Latest Intelligence</h2>
+          {rightRailArticles.length > 0 && <NewsList articles={rightRailArticles} />}
+        </div>
       </section>
 
+      <div className="section-divider" />
+
       {/* Deep Dives Grid */}
+      <h2>Trending Now</h2>
       {deepDiveArticles.length > 0 && <DeepDives articles={deepDiveArticles} />}
 
+      <div className="section-divider" />
+
       {/* The Feed */}
+      <h2>Field Reports</h2>
       {feedArticles.length > 0 && <TheFeed articles={feedArticles} />}
 
       {/* Newsletter */}

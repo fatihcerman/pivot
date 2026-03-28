@@ -143,6 +143,7 @@ function SlideContent({ article, readTime }: { article: Article; readTime: numbe
         <div className={styles.metaData}>
           <span className={styles.category}>{article.category}</span>
           <span className={styles.readingTime}>⚡ {readTime} MIN READ</span>
+          {article.isUrgent && <span className={styles.urgentTag}>URGENT INTEL</span>}
         </div>
         <h1 className={styles.title}>{article.title}</h1>
         <p className={styles.summary}>{article.summary}</p>

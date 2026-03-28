@@ -19,12 +19,12 @@ export default function NewsList({ articles }: { articles: Article[] }) {
             <article className={styles.item}>
               <div className={styles.meta}>
                 <span className={styles.timecode}>
-                  {new Date(article.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                  {new Date(article.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}
                 </span>
-                <span className={styles.category}>{article.category}</span>
-                {article.isUrgent && <span className={styles.urgent}>Priority</span>}
               </div>
-              <h3 className={styles.title}>{article.title}</h3>
+              <h3 className={styles.title}>
+                {article.title}
+              </h3>
             </article>
           </a>
         ))}
