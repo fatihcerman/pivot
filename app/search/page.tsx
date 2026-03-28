@@ -1,13 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Article } from '@prisma/client';
 import styles from './search.module.css';
 
-export default function SearchPage() {
+function SearchContent() {
   const searchParams = useSearchParams();
   const query = searchParams.get('q');
   
@@ -90,5 +90,15 @@ export default function SearchPage() {
         </div>
       ) : null}
     </main>
+  );
+}
+
+export default function SearchPage() {
+  return (
+    <div style={{ minHeight: '100vh', background: 'var(--bg-base)' }}>
+      <Suspense fallback={<div style={{ padding: '5rem', textAlign: 'center', color: 'var(--accent-electric)', letterSpacing: '0.2em' }}>INITIALIZING SCAN...</div>}>
+        <SearchContent />
+      </Suspense>
+    </div>
   );
 }
