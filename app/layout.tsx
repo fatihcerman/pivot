@@ -1,12 +1,22 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, Outfit, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import TrendingBar from '../components/TrendingBar';
 
 const inter = Inter({ 
   subsets: ['latin'], 
+  variable: '--font-inter'
+});
+
+const outfit = Outfit({
+  subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700', '800', '900'],
   variable: '--font-outfit'
+});
+
+const jetbrains = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono'
 });
 
 export const metadata: Metadata = {
@@ -20,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={`${inter.variable} ${outfit.variable} ${jetbrains.variable}`}>
       <body className={inter.className}>
         {/* Fix #12: The global ambient glow - will be targeted by CSS variables for dynamic tinting */}
         <div className="ambient-glow" />

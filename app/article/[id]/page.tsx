@@ -128,18 +128,20 @@ export default async function ArticlePage({ params }: { params: Promise<{ id: st
           </time>
         </div>
 
-        <h1 className={styles.title}>{article.title}</h1>
+        <h1 className={styles.title} style={{ fontFamily: 'var(--font-outfit)', fontWeight: 900, fontSize: 'clamp(2rem, 5vw, 4rem)', lineHeight: 1.1, marginBottom: '1.5rem' }}>
+          {article.title}
+        </h1>
         
         {/* Fix #13: Surfacing the PIVOT Perspective */}
         {article.perspective && (
-          <div className={styles.perspectiveBox}>
-            <div className={styles.perspectiveLabel}>THE PIVOT TAKE</div>
-            <p className={styles.perspectiveText}>{article.perspective}</p>
+          <div className={styles.perspectiveBox} style={{ borderLeft: '4px solid var(--accent-electric)', paddingLeft: '2rem', margin: '3rem 0', background: 'rgba(0,212,255,0.03)' }}>
+            <div className={styles.perspectiveLabel} style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: 'var(--accent-electric)', marginBottom: '0.5rem', letterSpacing: '0.2em' }}>THE PIVOT TAKE</div>
+            <p className={styles.perspectiveText} style={{ fontSize: '1.2rem', fontStyle: 'italic', color: 'var(--text-primary)', lineHeight: 1.6 }}>{article.perspective}</p>
           </div>
         )}
 
         <div className={styles.summaryContainer}>
-          <p className={styles.summary}>{article.summary}</p>
+          <p className={styles.summary} style={{ fontSize: '1.25rem', lineHeight: 1.8, color: 'var(--text-secondary)', maxWidth: '800px' }}>{article.summary}</p>
         </div>
 
         <a

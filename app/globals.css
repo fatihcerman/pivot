@@ -60,11 +60,16 @@
 body {
   background-color: var(--bg-base);
   color: var(--text-primary);
-  line-height: 1.5;
+  line-height: 1.6;
   overflow-x: hidden;
   min-height: 100vh;
-  font-family: var(--font-outfit), 'Inter', system-ui, -apple-system, sans-serif;
-  letter-spacing: -0.01em;
+  font-family: var(--font-outfit), var(--font-inter), system-ui, sans-serif;
+  letter-spacing: -0.015em;
+}
+
+code, pre, .mono-data {
+  font-family: var(--font-mono), monospace;
+  letter-spacing: 0;
 }
 
 a {
@@ -72,18 +77,18 @@ a {
   text-decoration: none;
 }
 
-/* Typography Authority */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: 700;
-  line-height: 1.05;
-  letter-spacing: -0.03em;
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-outfit), sans-serif;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
   color: var(--text-accent);
+  text-transform: uppercase;
 }
+
+h1 { font-size: clamp(2.5rem, 8vw, 5rem); }
+h2 { font-size: clamp(1.8rem, 5vw, 3rem); }
+h3 { font-size: clamp(1.4rem, 4vw, 2rem); }
 
 /* ════════════════════════════════════════════════════
    ATMOSPHERIC GLOBAL LIGHTING
@@ -149,57 +154,49 @@ h6 {
 
 /* ════════════════════════════════════════════════════
    PIVOT MINIMALIST NAVIGATION
-   Sleek, invisible until needed. Logo + icons only.
    ════════════════════════════════════════════════════ */
 
 .pivot-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.25rem 0;
+  padding: 2.5rem 0;
 }
 
 .pivot-brand {
+  font-family: var(--font-outfit), sans-serif;
   font-weight: 900;
-  font-size: 1.8rem;
-  letter-spacing: 0.3em;
+  font-size: 2.2rem;
+  letter-spacing: 0.4em;
   color: var(--text-accent);
   text-transform: uppercase;
   font-style: italic;
   position: relative;
-  text-shadow: 0 0 30px rgba(0, 212, 255, 0.08);
+  transition: all var(--transition-smooth);
 }
 
-/* Colored accent slash after P */
-.pivot-brand::after {
-  content: '';
-  display: inline-block;
-  width: 3px;
-  height: 1em;
-  background: var(--accent-electric);
-  margin-left: -0.15em;
-  margin-right: 0.05em;
-  transform: skewX(-12deg);
-  opacity: 0;
-  vertical-align: middle;
-  box-shadow: 0 0 12px var(--accent-electric-glow);
+.pivot-brand:hover {
+  text-shadow: 0 0 40px var(--accent-electric-glow);
+  letter-spacing: 0.45em;
 }
 
 .nav-search-form {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  background: rgba(255, 255, 255, 0.03);
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.02);
   border: 1px solid var(--border-subtle);
-  padding: 0.25rem 0.5rem 0.25rem 1rem;
+  padding: 0.5rem 1rem;
   border-radius: var(--radius-pill);
-  transition: all var(--transition-fast);
+  transition: all var(--transition-smooth);
+  backdrop-filter: blur(10px);
 }
 
 .nav-search-form:focus-within {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.05);
   border-color: var(--accent-electric);
-  box-shadow: 0 0 15px var(--accent-electric-glow);
+  box-shadow: 0 0 30px var(--accent-electric-glow);
+  transform: translateY(-2px);
 }
 
 .nav-search-input {
@@ -207,15 +204,16 @@ h6 {
   border: none;
   outline: none;
   color: var(--text-primary);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  width: 120px;
+  font-size: 0.8rem;
+  font-family: var(--font-mono), monospace;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  width: 140px;
   transition: width var(--transition-smooth);
 }
 
 .nav-search-input:focus {
-  width: 200px;
+  width: 240px;
 }
 
 .nav-search-btn {
@@ -224,15 +222,23 @@ h6 {
   cursor: pointer;
   padding: 0;
   display: flex;
-  align-items: center;
+  transition: transform var(--transition-fast);
+}
+
+.nav-search-btn:hover {
+  transform: scale(1.1);
 }
 
 .nav-icon {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   color: var(--text-secondary);
-  cursor: pointer;
-  transition: color var(--transition-fast);
+  transition: all var(--transition-fast);
+}
+
+.nav-icon:hover {
+  color: var(--accent-electric);
+  filter: drop-shadow(0 0 10px var(--accent-electric-glow));
 }
 
 /* Fix #15: Reading Progress Bar */
@@ -240,16 +246,11 @@ h6 {
   position: fixed;
   top: 0;
   left: 0;
-  height: 3px;
-  background: var(--accent-electric);
+  height: 4px;
+  background: linear-gradient(90deg, transparent, var(--accent-electric));
   z-index: 1000;
-  box-shadow: 0 0 12px var(--accent-electric-glow);
+  box-shadow: 0 0 20px var(--accent-electric-glow);
   pointer-events: none;
-}
-
-.nav-icon:hover {
-  color: var(--accent-electric);
-  filter: drop-shadow(0 0 8px var(--accent-electric-glow));
 }
 
 /* ════════════════════════════════════════════════════
