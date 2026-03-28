@@ -12,9 +12,9 @@ export async function GET(request: Request) {
     const articles = await prisma.article.findMany({
         where: {
             OR: [
-                { title: { contains: query } },
-                { summary: { contains: query } },
-                { category: { contains: query } },
+                { title: { contains: query, mode: 'insensitive' } },
+                { summary: { contains: query, mode: 'insensitive' } },
+                { category: { contains: query, mode: 'insensitive' } },
             ],
         },
         orderBy: { createdAt: 'desc' },

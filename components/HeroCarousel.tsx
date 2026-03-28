@@ -110,10 +110,11 @@ export default function HeroCarousel({ articles, intervalMs = 8000 }: HeroCarous
 
 /** Inner slide component to avoid duplication */
 function SlideContent({ article, readTime }: { article: Article; readTime: number }) {
+  const [imageError, setImageError] = useState(false);
   return (
     <article className={styles.hero}>
       <div className={styles.imageLayer}>
-        {article.imageUrl ? (
+        {article.imageUrl && !imageError ? (
           <Image
             src={article.imageUrl}
             alt={article.title}
@@ -121,6 +122,7 @@ function SlideContent({ article, readTime }: { article: Article; readTime: numbe
             sizes="(max-width: 1024px) 100vw, 70vw"
             className={styles.image}
             priority
+            onError={() => setImageError(true)}
           />
         ) : (
           <div className={styles.imagePlaceholder}>

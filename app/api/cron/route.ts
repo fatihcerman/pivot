@@ -87,14 +87,26 @@ export async function GET(request: Request) {
     `;
 
     console.log('[Gemini] Starting Analysis with Fast Flash Model...');
-    const response = await genai.models.generateContent({
-      model: 'gemini-3.0-flash', // Modelimiz Flash serisinin en güncel 3.0 versiyonudur.
-      contents: prompt,
-      config: { responseMimeType: 'application/json' }
-    });
+    let parsedData: any[] = [];
+    
+    // QA: Simple 3-retry fallback mechanism for AI Resilience
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      try {
+        const response = await genai.models.generateContent({
+          model: 'gemini-3.0-flash', // Modelimiz Flash serisinin en güncel 3.0 versiyonudur.
+          contents: prompt,
+          config: { responseMimeType: 'application/json' }
+        });
+        const text = response.text || '';
+        parsedData = JSON.parse(text);
+        break; // Success
+      } catch (err: any) {
+        if (attempt === 3) throw new Error(`Gemini API failed after 3 attempts: ${err.message}`);
+        console.warn(`[Gemini] Attempt ${attempt} failed, retrying in ${attempt * 2}s...`);
+        await new Promise(res => setTimeout(res, attempt * 2000));
+      }
+    }
 
-    const text = response.text || '';
-    const parsedData = JSON.parse(text);
     console.log(`[Gemini] Analysis Complete. Parsed items: ${parsedData.length}`);
 
     // 3. Database Save
