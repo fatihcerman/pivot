@@ -88,7 +88,7 @@ export async function GET(request: Request) {
 
     console.log('[Gemini] Starting Analysis with Fast Flash Model...');
     const response = await genai.models.generateContent({
-      model: 'gemini-2.0-flash', // Modelimiz Flash serisinin mevcut API üzerindeki en güncel ve tutarlı versiyonudur.
+      model: 'gemini-3.0-flash', // Modelimiz Flash serisinin en güncel 3.0 versiyonudur.
       contents: prompt,
       config: { responseMimeType: 'application/json' }
     });
