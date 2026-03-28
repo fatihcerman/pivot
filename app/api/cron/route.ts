@@ -105,7 +105,7 @@ export async function GET(request: Request) {
       if (!item.title || !item.url) continue;
 
       const imageQuery = (item.imageSearchQuery || 'gaming technology dark') + ', cinematic 8k';
-      const imageUrl = \`https://image.pollinations.ai/prompt/\${encodeURIComponent(imageQuery)}?width=1200&height=800&nologo=true\`;
+      const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(imageQuery)}?width=1200&height=800&nologo=true`;
 
       try {
         await prisma.article.upsert({
@@ -133,11 +133,11 @@ export async function GET(request: Request) {
         newUrls.push(item.url);
         savedCount++;
       } catch (e: any) {
-        console.warn(\`[DB] Upsert fail for [\${item.title}]: \${e.message}\`);
+        console.warn(`[DB] Upsert fail for [${item.title}]: ${e.message}`);
       }
     }
 
-    console.log(\`[DB] Sync Complete. Saved: \${savedCount}\`);
+    console.log(`[DB] Sync Complete. Saved: ${savedCount}`);
 
     // Eski nesil veritabanı temizliği (Hacim büyümesin ve maliyet artmasın diye Vercel Free Tier korunumu)
     if (newUrls.length > 0) {
