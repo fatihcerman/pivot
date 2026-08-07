@@ -7,11 +7,13 @@
     "build": "npx prisma db push && next build",
     "start": "next start",
     "lint": "eslint",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate && node scripts/sync-face-models.mjs",
+    "face-models": "node scripts/sync-face-models.mjs"
   },
   "dependencies": {
     "@google/genai": "^1.42.0",
     "@prisma/client": "^6.19.2",
+    "@vladmandic/face-api": "^1.7.15",
     "cheerio": "^1.2.0",
     "next": "16.1.6",
     "react": "19.2.3",

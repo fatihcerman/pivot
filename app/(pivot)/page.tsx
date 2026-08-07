@@ -1,9 +1,9 @@
-import { prisma } from '../lib/prisma';
-import HeroCarousel from '../components/HeroCarousel';
-import NewsList from '../components/NewsList';
-import DeepDives from '../components/DeepDives';
-import TheFeed from '../components/TheFeed';
-import Newsletter from '../components/Newsletter';
+import { prisma } from '@/lib/prisma';
+import HeroCarousel from '@/components/HeroCarousel';
+import NewsList from '@/components/NewsList';
+import DeepDives from '@/components/DeepDives';
+import TheFeed from '@/components/TheFeed';
+import Newsletter from '@/components/Newsletter';
 import styles from './page.module.css';
 
 export const revalidate = 60;

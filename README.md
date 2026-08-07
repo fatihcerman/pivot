@@ -1,5 +1,32 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Uygulamalar
+
+Depo iki uygulamayı barındırır:
+
+- **PIVOT** (`/`) — AI destekli oyun haberleri.
+- **İZ** (`/iz`) — Dijital İz Denetimi: kullanıcının **kendi** dijital ayak izini
+  denetlemesi için bir araç.
+
+### İZ — Dijital İz Denetimi
+
+Kullanıcı kendi yüzünü canlılık testiyle bir kez kaydeder; ardından kendi
+kullanıcı adlarının hangi platformlarda herkese açık göründüğünü görür, şüpheli
+bir profilin kendi fotoğrafını kullanıp kullanmadığını kontrol eder ve gerekirse
+KVKK kaldırma/silme talebi taslağı üretir.
+
+Tasarımın belirleyici kuralı: **araç yabancıları tanımlamaz.** Kaydedilebilen tek
+yüz kullanıcının kendi yüzü, sorgulanabilen tek hesap kullanıcının kendi
+hesabıdır. Karşılaştırma her zaman 1:1'dir ve yüz verisi tarayıcıdan çıkmaz.
+Gerekçe, tehdit modeli ve kodda zorlanan sınırlar için
+[`docs/iz-gizlilik.md`](docs/iz-gizlilik.md).
+
+Yüz modeli ağırlıkları `npm install` sırasında `node_modules` içinden
+`public/models` altına kopyalanır (`npm run face-models` ile elle de
+çalıştırılabilir); dış bir CDN'e istek yapılmaz. Kamera erişimi tarayıcı
+tarafından güvenli bağlam gerektirir — üretimde HTTPS, geliştirmede
+`http://localhost` çalışır.
+
 ## Getting Started
 
 First, run the development server:

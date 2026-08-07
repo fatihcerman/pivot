@@ -1,8 +1,8 @@
-import { prisma } from '../../../lib/prisma';
+import { prisma } from '@/lib/prisma';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import ReadingProgress from '../../../components/ReadingProgress';
+import ReadingProgress from '@/components/ReadingProgress';
 import styles from './article.module.css';
 import { Metadata } from 'next';
 

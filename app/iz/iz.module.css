@@ -1,0 +1,744 @@
+/* ═══════════════════════════════════════════════════
+   İZ — Dijital İz Denetimi
+   PIVOT tasarım değişkenlerinin üzerine kendi aksanı.
+   ═══════════════════════════════════════════════════ */
+
+.shell {
+  --iz-accent: #2dd4bf;
+  --iz-accent-soft: rgba(45, 212, 191, 0.12);
+  --iz-accent-line: rgba(45, 212, 191, 0.32);
+  --iz-warn: #fbbf24;
+  --iz-warn-soft: rgba(251, 191, 36, 0.12);
+  --iz-danger: #fb7185;
+  --iz-danger-soft: rgba(251, 113, 133, 0.12);
+  --iz-muted: rgba(255, 255, 255, 0.5);
+
+  min-height: 100vh;
+  background:
+    radial-gradient(1100px 620px at 12% -8%, rgba(45, 212, 191, 0.09), transparent 62%),
+    radial-gradient(900px 520px at 88% 4%, rgba(99, 102, 241, 0.08), transparent 60%),
+    var(--bg-base);
+  display: flex;
+  flex-direction: column;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ── Üst gezinme ─────────────────────────────────── */
+
+.nav {
+  border-bottom: 1px solid var(--border-subtle);
+  background: rgba(8, 8, 10, 0.72);
+  backdrop-filter: blur(14px);
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+.navInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 0.95rem 0;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  font-family: var(--font-outfit), sans-serif;
+  font-weight: 800;
+  font-size: 1.3rem;
+  letter-spacing: -0.03em;
+  color: var(--text-accent);
+  text-decoration: none;
+}
+
+.brandMark {
+  color: var(--iz-accent);
+}
+
+.brandSub {
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.navLink {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 0.4rem 0.7rem;
+  border-radius: var(--radius-pill);
+  transition: color var(--transition-fast), background var(--transition-fast);
+}
+
+.navLink:hover {
+  color: var(--text-accent);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.navLinkActive {
+  color: var(--iz-accent);
+  background: var(--iz-accent-soft);
+}
+
+/* ── Sayfa yapısı ────────────────────────────────── */
+
+.main {
+  flex: 1;
+  padding: 2.75rem 0 4.5rem;
+}
+
+.pageHead {
+  margin-bottom: 2rem;
+}
+
+.eyebrow {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--iz-accent);
+  margin-bottom: 0.7rem;
+}
+
+.title {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: clamp(1.75rem, 4vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+  margin-bottom: 0.7rem;
+}
+
+.lede {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  max-width: 62ch;
+  line-height: 1.65;
+}
+
+.sectionTitle {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.4rem;
+}
+
+/* ── Kartlar ─────────────────────────────────────── */
+
+.card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+}
+
+.card + .card {
+  margin-top: 1.1rem;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.1rem;
+}
+
+.stepCard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.4rem;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color var(--transition-fast), transform var(--transition-fast),
+    background var(--transition-fast);
+}
+
+.stepCard:hover {
+  border-color: var(--iz-accent-line);
+  background: var(--bg-surface-elevated);
+  transform: translateY(-2px);
+}
+
+.stepIndex {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  color: var(--text-tertiary);
+}
+
+.stepTitle {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.stepBody {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  flex: 1;
+}
+
+/* ── Rozetler ────────────────────────────────────── */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.28rem 0.6rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.badgeOk {
+  color: var(--iz-accent);
+  background: var(--iz-accent-soft);
+  border-color: var(--iz-accent-line);
+}
+
+.badgeWarn {
+  color: var(--iz-warn);
+  background: var(--iz-warn-soft);
+  border-color: rgba(251, 191, 36, 0.3);
+}
+
+.badgeDanger {
+  color: var(--iz-danger);
+  background: var(--iz-danger-soft);
+  border-color: rgba(251, 113, 133, 0.3);
+}
+
+.badgeNeutral {
+  color: var(--text-tertiary);
+  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--border-strong);
+}
+
+/* ── Formlar ─────────────────────────────────────── */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-bottom: 1.1rem;
+}
+
+.label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.hint {
+  font-size: 0.78rem;
+  color: var(--text-tertiary);
+  line-height: 1.55;
+}
+
+.input,
+.select,
+.textarea {
+  width: 100%;
+  background: var(--bg-base);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.92rem;
+  padding: 0.65rem 0.8rem;
+  transition: border-color var(--transition-fast);
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+  outline: none;
+  border-color: var(--iz-accent-line);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.6;
+}
+
+.select {
+  appearance: none;
+  cursor: pointer;
+}
+
+.checkRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  padding: 1rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  background: var(--bg-base);
+  cursor: pointer;
+}
+
+.checkRow input {
+  margin-top: 0.2rem;
+  accent-color: var(--iz-accent);
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+.checkText {
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ── Düğmeler ────────────────────────────────────── */
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  align-items: center;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  padding: 0.68rem 1.25rem;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background var(--transition-fast), border-color var(--transition-fast),
+    color var(--transition-fast), opacity var(--transition-fast);
+}
+
+.buttonPrimary {
+  background: var(--iz-accent);
+  color: #04211d;
+}
+
+.buttonPrimary:hover:not(:disabled) {
+  background: #5eead4;
+}
+
+.buttonGhost {
+  background: transparent;
+  border-color: var(--border-strong);
+  color: var(--text-secondary);
+}
+
+.buttonGhost:hover:not(:disabled) {
+  border-color: var(--iz-accent-line);
+  color: var(--text-accent);
+}
+
+.buttonDanger {
+  background: transparent;
+  border-color: rgba(251, 113, 133, 0.4);
+  color: var(--iz-danger);
+}
+
+.buttonDanger:hover:not(:disabled) {
+  background: var(--iz-danger-soft);
+}
+
+.button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ── Bildirim kutuları ───────────────────────────── */
+
+.notice {
+  border-radius: var(--radius-md);
+  padding: 0.95rem 1.1rem;
+  font-size: 0.86rem;
+  line-height: 1.65;
+  border: 1px solid;
+  margin-bottom: 1.25rem;
+}
+
+.noticeInfo {
+  border-color: var(--iz-accent-line);
+  background: var(--iz-accent-soft);
+  color: #a7f3e6;
+}
+
+.noticeWarn {
+  border-color: rgba(251, 191, 36, 0.32);
+  background: var(--iz-warn-soft);
+  color: #fde3a7;
+}
+
+.noticeDanger {
+  border-color: rgba(251, 113, 133, 0.34);
+  background: var(--iz-danger-soft);
+  color: #fecdd3;
+}
+
+.noticeTitle {
+  font-weight: 700;
+  display: block;
+  margin-bottom: 0.3rem;
+  color: inherit;
+}
+
+/* ── Canlılık / kamera ───────────────────────────── */
+
+.captureStage {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  aspect-ratio: 4 / 3;
+  margin: 0 auto 1.25rem;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: #000;
+  border: 1px solid var(--border-strong);
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Ayna görüntüsü kullanıcıya doğal gelir. Ölçümler ham kareden alınır. */
+  transform: scaleX(-1);
+}
+
+.captureOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+  pointer-events: none;
+}
+
+.challengePrompt {
+  align-self: center;
+  background: rgba(8, 8, 10, 0.82);
+  border: 1px solid var(--iz-accent-line);
+  color: var(--text-accent);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.6rem 1.1rem;
+  border-radius: var(--radius-pill);
+  text-align: center;
+}
+
+.captureStatus {
+  align-self: center;
+  background: rgba(8, 8, 10, 0.82);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--radius-pill);
+  text-align: center;
+}
+
+.challengeList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.challengeChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-strong);
+  color: var(--text-tertiary);
+}
+
+.challengeChipActive {
+  border-color: var(--iz-accent-line);
+  background: var(--iz-accent-soft);
+  color: var(--iz-accent);
+}
+
+.challengeChipDone {
+  border-color: var(--iz-accent-line);
+  color: var(--iz-accent);
+}
+
+/* ── Sonuç listeleri ─────────────────────────────── */
+
+.resultList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.resultRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+}
+
+.resultMain {
+  flex: 1;
+  min-width: 200px;
+}
+
+.resultName {
+  font-weight: 600;
+  font-size: 0.94rem;
+  margin-bottom: 0.15rem;
+}
+
+.resultHandle {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.78rem;
+  color: var(--text-tertiary);
+}
+
+.resultDetail {
+  font-size: 0.83rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  flex-basis: 100%;
+}
+
+.exposedList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  flex-basis: 100%;
+}
+
+.exposedTag {
+  font-size: 0.72rem;
+  color: var(--text-tertiary);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: 0.15rem 0.45rem;
+}
+
+.link {
+  color: var(--iz-accent);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+/* ── Tablo benzeri satırlar ──────────────────────── */
+
+.handleRow {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  margin-bottom: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.handleRow .select {
+  width: auto;
+  min-width: 150px;
+  flex-shrink: 0;
+}
+
+.handleRow .input {
+  flex: 1;
+  min-width: 180px;
+}
+
+.iconButton {
+  background: transparent;
+  border: 1px solid var(--border-strong);
+  color: var(--text-tertiary);
+  border-radius: var(--radius-md);
+  width: 2.35rem;
+  height: 2.35rem;
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.iconButton:hover {
+  color: var(--iz-danger);
+  border-color: rgba(251, 113, 133, 0.4);
+}
+
+/* ── Karşılaştırma görseli ───────────────────────── */
+
+.compareGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.1rem;
+  margin-bottom: 1.25rem;
+}
+
+.comparePane {
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--bg-base);
+}
+
+.comparePaneHead {
+  font-size: 0.76rem;
+  color: var(--text-tertiary);
+  padding: 0.5rem 0.7rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.compareImage {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  display: block;
+}
+
+.comparePlaceholder {
+  width: 100%;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-tertiary);
+  font-size: 0.82rem;
+  text-align: center;
+  padding: 1rem;
+}
+
+.scoreBar {
+  height: 6px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.07);
+  overflow: hidden;
+  margin: 0.6rem 0 0.4rem;
+}
+
+.scoreFill {
+  height: 100%;
+  border-radius: var(--radius-pill);
+  transition: width var(--transition-smooth);
+}
+
+/* ── Kod / metin çıktısı ─────────────────────────── */
+
+.output {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.82rem;
+  line-height: 1.75;
+  white-space: pre-wrap;
+  word-break: break-word;
+  background: var(--bg-base);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  padding: 1.1rem;
+  max-height: 460px;
+  overflow-y: auto;
+}
+
+/* ── Boş durum ───────────────────────────────────── */
+
+.empty {
+  text-align: center;
+  padding: 2.75rem 1.5rem;
+  color: var(--text-tertiary);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+/* ── Alt bilgi ───────────────────────────────────── */
+
+.footer {
+  border-top: 1px solid var(--border-subtle);
+  padding: 2rem 0;
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
+  line-height: 1.7;
+}
+
+.footerRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footerLinks {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* ── Yardımcılar ─────────────────────────────────── */
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.rowBetween {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.muted {
+  color: var(--text-tertiary);
+  font-size: 0.82rem;
+}
+
+.spacer {
+  height: 1.1rem;
+}
